@@ -1,0 +1,25 @@
+name = "customer-orders"
+main = "src/index.ts"
+compatibility_date = "2025-10-01"
+
+# Capture console logs to the dashboard (queryable for ~days). Needed because
+# client errors are generic in prod, so the log stream is the only place error
+# detail lives. NOTE: keep PII OUT of logs — log error shapes, not order payloads.
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+# Non-secret config. Safe to commit.
+[vars]
+API_VERSION = "2026-04"
+# Only needed for the New Customer Accounts token fallback:
+# CA_API_VERSION = "2026-04"
+# SHOP_ID = "1234567890"
+
+# Secrets are NOT defined here. Set them out-of-band so they never hit the repo:
+#   npx wrangler secret put CLIENT_ID
+#   npx wrangler secret put CLIENT_SECRET
+# (Or in the Cloudflare dashboard -> Worker -> Settings -> Variables and Secrets.)
+#
+# Note: SHOP is no longer a var — the shop is read per-request from the verified
+# proxy params, so one deploy serves every store in the org.

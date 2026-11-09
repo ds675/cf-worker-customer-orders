@@ -1,0 +1,8 @@
+# Copy this file to `.dev.vars` (gitignored) for local `wrangler dev`.
+# These are the SECRETS the worker reads; non-secret config lives in wrangler.toml.
+CLIENT_ID="your-app-client-id"
+CLIENT_SECRET="your-app-client-secret"
+
+# Only needed if you test the New Customer Accounts token fallback locally:
+# SHOP_ID="1234567890"
+# CA_API_VERSION="2025-10"
